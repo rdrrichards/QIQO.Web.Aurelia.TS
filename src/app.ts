@@ -1,7 +1,7 @@
 import { RouterConfiguration, Router } from 'aurelia-router';
 
 export class App {
-  message = 'Hello World, to you now!';
+  message = 'Aurelia Test Application';
   router: Router;
   
   configureRouter(config: RouterConfiguration, router: Router): void {

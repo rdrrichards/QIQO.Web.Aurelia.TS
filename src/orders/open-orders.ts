@@ -5,7 +5,7 @@ import { OrderService } from './../services/order.service';
 @autoinject
 export class OpenOrders {
   message = 'Open Orders';
-  orders: any[];
+  orders: IOrder[];
 
   constructor(private orderService: OrderService) { }
 

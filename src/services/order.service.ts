@@ -8,38 +8,36 @@ let _ordersUrl = CONFIG.baseUrls.orders;
 
 @autoinject
 export class OrderService {
-  orders: IOrder[];
+  // orders: IOrder[];
   constructor(private httpClient: HttpClient) {
 
   }
 
-  getOpenOrderForCurrent(): any {
-    var promise = new Promise((resolve, reject) => {
+  getOpenOrderForCurrent(): Promise<IOrder[]> {
+    var promise = new Promise<IOrder[]>((resolve, reject) => {
       this.httpClient.get(_openOrdersUrl)
         .then(result => {
-          var data = JSON.parse(result.response);
-          this.orders = data;
-          resolve(this.orders);
+          resolve(JSON.parse(result.response));
         });
     });
     return promise;
   }
 
-  findOrder(pattern) {
-    var promise = new Promise((resolve, reject) => {
+  findOrder(pattern): Promise<IOrder[]> {
+    var promise = new Promise<IOrder[]>((resolve, reject) => {
       this.httpClient.get(_ordersUrl + '&q=' + pattern)
         .then(result => {
-          return JSON.parse(result.response);
+          resolve(JSON.parse(result.response));
         });
     });
     return promise;
   }
 
-  getOrder(id) {
-    var promise = new Promise((resolve, reject) => {
+  getOrder(id): Promise<IOrder> {
+    var promise = new Promise<IOrder>((resolve, reject) => {
       this.httpClient.get(_ordersUrl + '/' + id)
         .then(result => {
-          return JSON.parse(result.response);
+          resolve(JSON.parse(result.response));
         });
     });
     return promise;
