@@ -1,13 +1,16 @@
 import { IOrder } from './../models/order';
 import { autoinject } from 'aurelia-dependency-injection';
 import { OrderService } from './../services/order.service';
+import { Router } from 'aurelia-router'
 
 @autoinject
 export class OpenOrders {
   message = 'Open Orders';
   orders: IOrder[];
+  selectedOrderKey: number;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+    private router: Router) { }
 
   activate() {
     // console.log('Active running...');
@@ -21,5 +24,9 @@ export class OpenOrders {
         console.log(err.message);
       }
       );
+  }
+
+  onSelectOrder(event: UIEvent, order: IOrder){
+    this.router.navigateToRoute('order-detail', {id: order.orderKey})
   }
 }
