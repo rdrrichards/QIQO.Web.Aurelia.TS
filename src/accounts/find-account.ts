@@ -1,25 +1,22 @@
-import { IOrder } from './../models/order';
+import { IAccount } from './../models/account';
 import { autoinject } from 'aurelia-dependency-injection';
 import { OrderService } from './../services/order.service';
 
 @autoinject
 export class FindAccount {
   message = 'Find Account';
-  orders: IOrder[];
+  accounts: IAccount[];
+  pattern = '';
 
-  constructor(private orderService: OrderService) { }
+  constructor(private accountService: AccountService) { }
 
-  // activate() {
-  //   // console.log('Active running...');
-  //   this.orderService.findOrder('java')
-  //     .then(orders => {
-  //       // console.log(orders);
-  //       this.orders = orders;
-  //       // console.log(this.orders.length);
-  //     }).catch(
-  //     err => {
-  //       console.log(err.message);
-  //     }
-  //     );
-  // }
+  activate() {
+    this.accounts = [];
+  }
+  find() {
+    console.log('About to run the find account function with value passed in: ' + this.pattern);
+    this.accountService.findAccount(this.pattern)
+      .then(accounts => this.accounts = accounts);
+  }
+
 }
