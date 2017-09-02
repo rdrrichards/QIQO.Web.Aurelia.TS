@@ -1,14 +1,18 @@
 <template>
-  <div><h3>${message}</h3></div>
+  <require from="./../resources/value-converters/date-format"></require>
+  <require from="./../resources/value-converters/currency-format"></require>
+  <div>
+    <h3>${message}</h3>
+  </div>
 
   <div class='panel-body'>
 
     <div>
       <form submit.delegate="find()" class="form form-horizontal">
         <div class="formgroup">
-        <input type="text" value.bind="pattern" placeholder="Search">
-        <button type="submit" class="btn btn-primary">Find</button>
-      </div>
+          <input type="text" value.bind="pattern" placeholder="Search">
+          <button type="submit" class="btn btn-primary">Find</button>
+        </div>
       </form>
     </div>
 
@@ -38,8 +42,8 @@
                   <td>${ account.accountName }</td>
                   <td>${ account.accountDesc }</td>
                   <td>${ account.accountDBA }</td>
-                  <td>${ account.accountStartDate }</td>
-                  <td>${ account.accountEndDate }</td>
+                  <td>${ account.accountStartDate | dateFormat:'YYYY-MM-DD' }</td>
+                  <td>${ account.accountEndDate | dateFormat:'YYYY-MM-DD' }</td>
                   <td>${ account.addresses.length }</td>
                   <td>${ account.attributes.length }</td>
                   <td>${ account.employees.length }</td>

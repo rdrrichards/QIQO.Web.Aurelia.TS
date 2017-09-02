@@ -16,7 +16,8 @@ export class App {
       { route: 'orders/:id', name: 'order-detail', moduleId: 'orders/view-order', title: 'Open Orders', nav: false },
       { route: 'products/:id', name: 'product-detail', moduleId: 'products/view-product', title: 'View Product', nav: false },
       { route: 'products/edit/:id', name: 'product-edit', moduleId: 'products/edit-product', title: 'Edit Product', nav: false },
-      { route: 'accounts/:id', name: 'account-detail', moduleId: 'accounts/view-account', title: 'View Account', nav: false }
+      { route: 'accounts/:id', name: 'account-detail', moduleId: 'accounts/view-account', title: 'View Account', nav: false },
+      { route: 'invoices/:id', name: 'invoice-detail', moduleId: 'invoices/view-invoice', title: 'View Invoice', nav: false }
     ]);
 
   }

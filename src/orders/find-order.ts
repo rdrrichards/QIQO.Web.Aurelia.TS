@@ -1,3 +1,4 @@
+import { Router } from 'aurelia-router';
 import { IOrder } from './../models/order';
 import { autoinject } from 'aurelia-dependency-injection';
 import { OrderService } from './../services/order.service';
@@ -6,20 +7,24 @@ import { OrderService } from './../services/order.service';
 export class FindOrders {
   message = 'Find Orders';
   orders: IOrder[];
+  pattern = '';
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+    private router: Router) { }
 
   activate() {
-    // console.log('Active running...');
-    this.orderService.findOrder('java')
-      .then(orders => {
-        // console.log(orders);
-        this.orders = orders;
-        // console.log(this.orders.length);
-      }).catch(
-      err => {
-        console.log(err.message);
-      }
-      );
+    this.orders = [];
+  }
+
+  find() {
+    if (this.pattern !== '') {
+    console.log('About to run the find invoice function with value passed in: ' + this.pattern);
+      this.orderService.findOrder(this.pattern)
+        .then(invoices => this.orders = invoices).catch(err => console.log(err.message));
+    }
+  }
+
+  onSelectOrder(event: UIEvent, order: IOrder) {
+    this.router.navigateToRoute('order-detail', { id: order.orderKey })
   }
 }

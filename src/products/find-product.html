@@ -1,3 +1,58 @@
 <template>
-  <div>${message}</div>
+    <div>${message}</div>
+    
+    <div>
+        <form submit.delegate="find()">
+            <input type="text" value.bind="pattern">
+  		    <button type="submit" class="btn btn-primary">Find</button>
+        </form>
+    </div>
+    
+    
+    <div if.bind="page">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Key</td>
+                            <td>Product Code</td>
+                            <td>Product Name</td>
+                            <td>Product Decription</td>
+                            <td>Product Type</td>
+                            <td>Product Short Decription</td>
+                            <td>Product Long Description</td>
+                            <td>Product Image Path</td>
+                            <td>Product Default Price</td>
+                            <td>Product Default Quantity</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr repeat.for="product of page.results">
+                            <td><span click.delegate="onSelectProduct($event, product)"><u style="cursor:pointer">${ product.productKey }</u></span></td>
+                            <td>${ product.productCode }</td>
+                            <td>${ product.productName }</td>
+                            <td>${ product.productDesc }</td>
+                            <td>${ product.productType }</td>
+                            <td>${ product.productShortDesc }</td>
+                            <td>${ product.productLongDesc }</td>
+                            <td>${ product.productImagePath }</td>
+                            <td>${ product.productBasePrice }</td>
+                            <td>${ product.productBaseQuantity }</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+            <div class='panel-footer'>
+                Page ${page.currentPage + 1} of ${page.totalPages} pages (${page.totalCount} Product(s) total); Category: ${page.category}; Sort: ${page.orderBy} 
+                
+                <button (click)="next(page.currentPage - 1, page.pageSize, page.orderBy, page.category)" [disabled]="canGoBack()">Prior</button>
+                &nbsp;
+                <button (click)="next(page.currentPage + 1, page.pageSize, page.orderBy, page.category)" [disabled]="canGoForward()">Next</button>
+            </div>
+        </div>
+        
 </template>

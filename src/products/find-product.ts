@@ -1,25 +1,30 @@
+import { Router } from 'aurelia-router';
+import { IProductPage } from './../models/product-page';
+import { IProduct } from './../models/product';
+import { ProductService } from './../services/product.service';
 import { IOrder } from './../models/order';
 import { autoinject } from 'aurelia-dependency-injection';
-import { OrderService } from './../services/order.service';
 
 @autoinject
 export class FindProduct {
   message = 'Find Product';
   orders: IOrder[];
+  pattern = '';
+  page: IProductPage;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private productService: ProductService,
+    private router: Router) { }
 
   // activate() {
-  //   // console.log('Active running...');
-  //   this.orderService.findOrder('java')
-  //     .then(orders => {
-  //       // console.log(orders);
-  //       this.orders = orders;
-  //       // console.log(this.orders.length);
-  //     }).catch(
-  //     err => {
-  //       console.log(err.message);
-  //     }
-  //     );
   // }
+
+  find() {
+    console.log('About to run the find product function with value: ' + this.pattern);
+    this.productService.findProduct(this.pattern)
+      .then(page => this.page = page);
+  }
+
+  onSelectProduct(event: UIEvent, product: IProduct) {
+    this.router.navigateToRoute('product-detail', { id: product.productKey })
+  }
 }

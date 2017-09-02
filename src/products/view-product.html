@@ -1,0 +1,39 @@
+<template>
+    <div>${pageTitle}</div>
+    
+    <div if.bind="product">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <div class="row">
+                    <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Key</td>
+                        <td>Product Code</td>
+                        <td>Product Name</td>
+                        <td>Product Type</td>
+                        <td>Product Short Decription</td>
+                        <td>Product Long Description</td>
+                        <td>Product Image Path</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td>${ product.productKey } </td>
+                        <td>${ product.productCode }</td>
+                        <td>${ product.productName }</td>
+                        <td>${ product.productType }</td>
+                        <td>${ product.productShortDesc }</td>
+                        <td>${ product.productLongDesc }</td>
+                        <td>${ product.productImagePath }</td>
+                        <td><a href="#/products/edit/${product.productKey}">Edit</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+	</div>
+            
+</template>

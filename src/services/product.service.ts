@@ -1,3 +1,4 @@
+import { IProductPage } from './../models/product-page';
 import { IProduct } from './../models/product';
 import { HttpClient } from 'aurelia-http-client';
 import { autoinject } from 'aurelia-framework';
@@ -9,8 +10,8 @@ let _productsUrl = CONFIG.baseUrls.products;
 export class ProductService {
   constructor(private httpClient: HttpClient) { }
 
-  findProduct(pattern: string): Promise<IProduct[]> {
-    var promise = new Promise<IProduct[]>((resolve, reject) => {
+  findProduct(pattern: string): Promise<IProductPage> {
+    var promise = new Promise<IProductPage>((resolve, reject) => {
       this.httpClient.get(_productsUrl + '&q=' + pattern)
         .then(result => {
           resolve(JSON.parse(result.response));
@@ -19,8 +20,8 @@ export class ProductService {
     return promise;
   }
 
-  getProduct(id: number): Promise<IProduct[]> {
-    var promise = new Promise<IProduct[]>((resolve, reject) => {
+  getProduct(id: number): Promise<IProduct> {
+    var promise = new Promise<IProduct>((resolve, reject) => {
       this.httpClient.get(_productsUrl + '/' + id)
         .then(result => {
           resolve(JSON.parse(result.response));

@@ -1,25 +1,30 @@
-import { IOrder } from './../models/order';
+import { Router } from 'aurelia-router';
+import { IInvoice } from './../models/invoice';
+import { InvoiceService } from './../services/invoice.service';
 import { autoinject } from 'aurelia-dependency-injection';
-import { OrderService } from './../services/order.service';
 
 @autoinject
 export class FindInvoice {
   message = 'Find Invoice';
-  orders: IOrder[];
+  invoices: IInvoice[];
+  pattern = '';
 
-  constructor(private orderService: OrderService) { }
+  constructor(private invoiceService: InvoiceService,
+    private router: Router) { }
 
-  // activate() {
-  //   // console.log('Active running...');
-  //   this.orderService.findOrder('java')
-  //     .then(orders => {
-  //       // console.log(orders);
-  //       this.orders = orders;
-  //       // console.log(this.orders.length);
-  //     }).catch(
-  //     err => {
-  //       console.log(err.message);
-  //     }
-  //     );
-  // }
+  activate() {
+    this.invoices = [];
+  }
+
+  find() {
+    if (this.pattern !== '') {
+    console.log('About to run the find invoice function with value passed in: ' + this.pattern);
+      this.invoiceService.findInvoice(this.pattern)
+        .then(invoices => this.invoices = invoices).catch(err => console.log(err.message));
+    }
+  }
+
+  onSelectInvoice(event: UIEvent, invoice: IInvoice) {
+    this.router.navigateToRoute('invoice-detail', { id: invoice.invoiceKey })
+  }
 }
