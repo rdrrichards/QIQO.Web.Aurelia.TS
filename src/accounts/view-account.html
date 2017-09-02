@@ -1,6 +1,6 @@
 <template>
   <require from="./../resources/value-converters/date-format"></require>
-  <div>${message}</div>
+  <h3>${message}</h3>
 
   <div class='panel-body'>
     <div if.bind="account">
@@ -16,9 +16,9 @@
                   <td>Account DBA</td>
                   <td>Account Start</td>
                   <td>Account End</td>
-                  <td>Account Address Count</td>
-                  <td>Account Attribute Count</td>
-                  <td>Account Employee Count</td>
+                  <td>Address Count</td>
+                  <td>Attribute Count</td>
+                  <td>Employee Count</td>
                 </tr>
               </thead>
               <tbody>
@@ -40,19 +40,19 @@
             <table class="table" if.bind="account.addresses.length > 0">
               <thead>
                 <tr>
-                  <td>Adresses</td>
+                  <td><h4>Adresses</h4></td>
                 </tr>
               </thead>
               <tbody>
                 <tr repeat.for="address of account.addresses">
                   <td>${ address.addressKey } 
-                    <br> ${ address.addressType } 
-                    <br> ${ address.addressLine1 } 
-                    <br> ${ address.addressLine2 } 
-                    <br> ${ address.addressCity }, ${ address.addressState } ${ address.addressPostal } 
-                    <br> ${ address.addressCounty } 
-                    <br> ${ address.addressCountry } 
-                    <br> ${ address.addressNote } 
+                    <br> Types: ${ address.addressType } 
+                    <br> Address Line 1: ${ address.addressLine1 } 
+                    <br> Address Line 2: ${ address.addressLine2 } 
+                    <br> City/State/Postal: ${ address.addressCity }, ${ address.addressState } ${ address.addressPostal } 
+                    <br> County: ${ address.addressCounty } 
+                    <br> Country: ${ address.addressCountry } 
+                    <br> Note: ${ address.addressNote } 
                   </td>
                 </tr>
               </tbody>
@@ -62,13 +62,14 @@
             <table class="table" if.bind="account.employees.length > 0">
               <thead>
                 <tr>
-                  <td>Employees</td>
+                  <td><h4>Employees</h4></td>
                 </tr>
               </thead>
               <tbody>
                 <tr repeat.for="emp of account.employees">
-                  <td>${ emp.entityPersonKey } ${ emp.personCode } 
-                    ${ emp.personFirstName } ${ emp.personMI } 
+                  <td>${ emp.entityPersonKey } 
+                    <br> Code: ${ emp.personCode } 
+                    <br> Name: ${ emp.personFirstName } ${ emp.personMI } 
                     ${ emp.personLastName }</td>
                 </tr>
               </tbody>

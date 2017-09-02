@@ -33,7 +33,7 @@
               <tbody>
                 <tr repeat.for="account of accounts">
                   <td>
-                    <span click.delegate="onSelectAccount($event, account)">${ account.accountCode }</span>
+                    <span click.delegate="onSelectAccount($event, account)"><u style="cursor:pointer">${ account.accountCode }</u></span>
                   </td>
                   <td>${ account.accountName }</td>
                   <td>${ account.accountDesc }</td>

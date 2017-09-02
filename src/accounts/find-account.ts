@@ -17,13 +17,15 @@ export class FindAccount {
     this.accounts = [];
   }
   find() {
+    if (this.pattern !== '') {
     console.log('About to run the find account function with value passed in: ' + this.pattern);
-    this.accountService.findAccount(this.pattern)
-      .then(accounts => this.accounts = accounts);
-  }
-  
-    onSelectAccount(event: UIEvent, account: IAccount){
-      this.router.navigateToRoute('account-detail', {id: account.accountKey})
+      this.accountService.findAccount(this.pattern)
+        .then(accounts => this.accounts = accounts).catch(err => console.log(err.message));
     }
+  }
+
+  onSelectAccount(event: UIEvent, account: IAccount) {
+    this.router.navigateToRoute('account-detail', { id: account.accountKey })
+  }
 
 }

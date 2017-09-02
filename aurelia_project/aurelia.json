@@ -64,10 +64,5 @@
   "testFramework": {
     "id": "jasmine",
     "displayName": "Jasmine"
-  },
-  "dependencies": {
-      "name": "moment",
-      "path": "../node_modules/moment",
-      "main": "moment"
   }
 }

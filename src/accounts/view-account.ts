@@ -15,6 +15,7 @@ export class ViewAccount {
       .then(account => {
         // console.log(account);
         this.account = account;
+        this.message = this.message + ': ' + this.account.accountName;
       }).catch(
       err => {
         console.log(err.message);

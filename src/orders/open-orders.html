@@ -1,5 +1,6 @@
 <template>
   <require from="./../resources/value-converters/date-format"></require>
+  <require from="./../resources/value-converters/currency-format"></require>
   <div class='panel-body'>
     <div if.bind="orders">
       <div class="panel-body">
@@ -23,14 +24,14 @@
             <tbody>
               <tr repeat.for="order of orders" class="${order.orderKey === selectedOrderKey ? 'active' : ''}">
                 <!-- <td><span click.delegate="onSelectOrder($event, order)">View</span></td> -->
-                <td><span click.delegate="onSelectOrder($event, order)">${ order.orderNumber }</span></td>
+                <td><span click.delegate="onSelectOrder($event, order)"><u style="cursor:pointer">${ order.orderNumber }</u></span></td>
                 <td>${ order.account.accountCode }</td>
                 <td>${ order.account.accountName }</td>
                 <td>${ order.orderEntryDate | dateFormat:'YYYY-MM-DD' }</td>
                 <td>${ order.orderStatus }</td>
                 <td>${ order.orderDeliverByDate | dateFormat:'YYYY-MM-DD' }</td>
                 <td>${ order.orderItemCount }</td>
-                <td>${ order.orderValueSum }</td>
+                <td>${ order.orderValueSum | numberFormat:'$0,0.00' }</td>
                 <td>${ order.salesRepName }</td>
                 <td>${ order.accountRepName }</td>
               </tr>
