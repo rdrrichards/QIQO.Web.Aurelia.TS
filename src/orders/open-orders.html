@@ -1,4 +1,5 @@
 <template>
+  <require from="./../resources/value-converters/date-format"></require>
   <div class='panel-body'>
     <div if.bind="orders">
       <div class="panel-body">
@@ -25,9 +26,9 @@
                 <td><span click.delegate="onSelectOrder($event, order)">${ order.orderNumber }</span></td>
                 <td>${ order.account.accountCode }</td>
                 <td>${ order.account.accountName }</td>
-                <td>${ order.orderEntryDate }</td>
+                <td>${ order.orderEntryDate | dateFormat:'YYYY-MM-DD' }</td>
                 <td>${ order.orderStatus }</td>
-                <td>${ order.orderDeliverByDate }</td>
+                <td>${ order.orderDeliverByDate | dateFormat:'YYYY-MM-DD' }</td>
                 <td>${ order.orderItemCount }</td>
                 <td>${ order.orderValueSum }</td>
                 <td>${ order.salesRepName }</td>

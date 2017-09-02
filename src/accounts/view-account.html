@@ -1,4 +1,5 @@
 <template>
+  <require from="./../resources/value-converters/date-format"></require>
   <div>${message}</div>
 
   <div class='panel-body'>
@@ -26,8 +27,8 @@
                   <td>${ account.accountName }</td>
                   <td>${ account.accountDesc }</td>
                   <td>${ account.accountDBA }</td>
-                  <td>${ account.accountStartDate }</td>
-                  <td>${ account.accountEndDate }</td>
+                  <td>${ account.accountStartDate | dateFormat:'YYYY-MM-DD' }</td>
+                  <td>${ account.accountEndDate | dateFormat:'YYYY-MM-DD' }</td>
                   <td>${ account.addresses.length }</td>
                   <td>${ account.attributes.length }</td>
                   <td>${ account.employees.length }</td>
@@ -36,7 +37,7 @@
             </table>
           </div>
           <div class="row">
-            <table class="table">
+            <table class="table" if.bind="account.addresses.length > 0">
               <thead>
                 <tr>
                   <td>Adresses</td>
@@ -58,7 +59,7 @@
             </table>
           </div>
           <div class="row">
-            <table class="table">
+            <table class="table" if.bind="account.employees.length > 0">
               <thead>
                 <tr>
                   <td>Employees</td>

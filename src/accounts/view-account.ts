@@ -15,7 +15,6 @@ export class ViewAccount {
       .then(account => {
         // console.log(account);
         this.account = account;
-        // console.log(this.orders.length);
       }).catch(
       err => {
         console.log(err.message);

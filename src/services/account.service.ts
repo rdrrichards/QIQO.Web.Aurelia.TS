@@ -21,19 +21,7 @@ export class AccountService {
     return promise;
   }
 
-  // findAccount(pattern) {
-  //   var promise = new Promise((resolve, reject) => {
-  //     this.httpClient.get(_accountsUrl + '&q=' + pattern)
-  //       .then(result => {
-  //         var data = JSON.parse(result.response);
-  //         this.accounts = data;
-  //         resolve(this.accounts);
-  //       });
-  //   });
-  //   return promise;
-  // }
-
-  getAccount(id): Promise<IAccount> {
+  getAccount(id: number): Promise<IAccount> {
     var promise = new Promise<IAccount>((resolve, reject) => {
       this.httpClient.get(_accountsUrl + '/' + id)
         .then(result => {
@@ -57,7 +45,7 @@ export class AccountService {
     return promise;
   }
 
-  deleteAccount(id) {
+  deleteAccount(id: number) {
     var promise = new Promise((resolve, reject) => {
       this.httpClient.delete(_accountsUrl + '/' + id)
         .then(data => {
