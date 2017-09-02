@@ -1,7 +1,7 @@
 import { IOrder } from './../models/order';
 import { autoinject } from 'aurelia-dependency-injection';
 import { OrderService } from './../services/order.service';
-import { Router } from 'aurelia-router'
+import { Router } from 'aurelia-router';
 
 @autoinject
 export class OpenOrders {
