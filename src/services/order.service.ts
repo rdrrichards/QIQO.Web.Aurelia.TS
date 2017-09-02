@@ -62,7 +62,7 @@ export class OrderService {
       this.httpClient.delete(_ordersUrl + '/' + id)
         .then(result => {
           return JSON.parse(result.response);
-        });
+        }).catch(err => reject(err));
     });
     return promise;
   }
