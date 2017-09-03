@@ -20,6 +20,8 @@ export class FindAccount {
     console.log('About to run the find account function with value passed in: ' + this.pattern);
       this.accountService.findAccount(this.pattern)
         .then(accounts => this.accounts = accounts).catch(err => console.log(err.message));
+    } else {
+      this.accounts = null;
     }
   }
 

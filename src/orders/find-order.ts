@@ -21,6 +21,8 @@ export class FindOrders {
     console.log('About to run the find invoice function with value passed in: ' + this.pattern);
       this.orderService.findOrder(this.pattern)
         .then(invoices => this.orders = invoices).catch(err => console.log(err.message));
+    } else {
+      this.orders = null;
     }
   }
 
