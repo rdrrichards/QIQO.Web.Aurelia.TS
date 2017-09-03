@@ -26,7 +26,7 @@ export class OpenOrders {
       );
   }
 
-  onSelectOrder(event: UIEvent, order: IOrder){
-    this.router.navigateToRoute('order-detail', {id: order.orderKey})
+  onSelectOrder(event: UIEvent, order: IOrder) {
+    this.router.navigateToRoute('order-detail', { id: order.orderKey })
   }
 }

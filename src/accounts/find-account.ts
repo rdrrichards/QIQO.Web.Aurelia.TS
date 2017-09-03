@@ -1,7 +1,6 @@
 import { AccountService } from './../services/account.service';
 import { IAccount } from './../models/account';
 import { autoinject } from 'aurelia-dependency-injection';
-import { OrderService } from './../services/order.service';
 import { Router } from 'aurelia-router';
 
 @autoinject

@@ -3,8 +3,8 @@ import { HttpClient } from 'aurelia-http-client';
 import { autoinject } from 'aurelia-framework';
 import { CONFIG } from '../shared/config';
 
-let _openInvoicesUrl = CONFIG.baseUrls.openinvoices;
-let _invoicesUrl = CONFIG.baseUrls.invoices;
+const _openInvoicesUrl = CONFIG.baseUrls.openinvoices;
+const _invoicesUrl = CONFIG.baseUrls.invoices;
 
 @autoinject
 export class InvoiceService {
@@ -12,37 +12,34 @@ export class InvoiceService {
   }
 
   getOpenInvoices(): Promise<IInvoice[]> {
-    var promise = new Promise<IInvoice[]>((resolve, reject) => {
+    return new Promise<IInvoice[]>((resolve, reject) => {
       this.httpClient.get(_openInvoicesUrl)
         .then(result => {
           resolve(JSON.parse(result.response));
         });
     });
-    return promise;
   }
 
   findInvoice(pattern): Promise<IInvoice[]> {
-    var promise = new Promise<IInvoice[]>((resolve, reject) => {
+    return new Promise<IInvoice[]>((resolve, reject) => {
       this.httpClient.get(_invoicesUrl + '&q=' + pattern)
         .then(result => {
           resolve(JSON.parse(result.response));
         });
     });
-    return promise;
   }
 
   getInvoice(id: number): Promise<IInvoice> {
-    var promise = new Promise<IInvoice>((resolve, reject) => {
+    return new Promise<IInvoice>((resolve, reject) => {
       this.httpClient.get(_invoicesUrl + '/' + id)
         .then(result => {
           resolve(JSON.parse(result.response));
         });
     });
-    return promise;
   }
 
   updateInvoice(invoice: IInvoice) {
-    var promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.httpClient.configure(x => {
         x.withHeader('Content-Type', 'application/json');
         x.withHeader('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
@@ -52,17 +49,15 @@ export class InvoiceService {
           resolve(data);
         }).catch(err => reject(err));
     });
-    return promise;
   }
 
   deleteInvoice(id) {
-    var promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.httpClient.delete(_invoicesUrl + '/' + id)
         .then(result => {
           resolve(JSON.parse(result.response));
         });
     });
-    return promise;
   }
 
   getRecentInvoices() {
