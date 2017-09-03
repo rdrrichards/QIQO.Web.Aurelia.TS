@@ -1,59 +1,60 @@
 <template>
-    <require from="./../resources/value-converters/date-format"></require>
-    <div class='panel panel-primary'>
-    <div class='panel-heading'>
-        ${pageTitle}
-    </div>
-    
+  <require from="./../resources/value-converters/date-format"></require>
+  <div>
+    <h3>${message}</h3>
+  </div>
+
+  <div class='panel-body'>
+
     <div>
-        <form submit.delegate="find()">
-            <input type="text" value.bind="pattern">
-  		    <button type="submit" class="btn btn-primary">Find</button>
-        </form>
+      <form submit.delegate="find()">
+        <input type="text" value.bind="pattern" placeholder="Search">
+        <!-- <button type="submit" class="btn btn-primary">Find</button> -->
+      </form>
     </div>
-    
+
     <div class='panel-body'>
-        <!--<div if.bind="invoices">Loading invoices...</div>-->
-        <div if.bind="invoices">
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    <div class="row">
-                        <table class="table">
-                        <thead>
-                        <tr>
-                            <td>Invoice Number</td>
-                            <td>Account Code</td>
-                            <td>Account Name</td>
-                            <td>Invoice Entry Date
-                            <td>Invoice Status</td>
-                            <td>Invoice Due Date</td>
-                            <td>Invoice Item Count</td>
-                            <td>Invoice Value</td>
-                            <td>Sale Rep Name</td>
-                            <td>Account Rep Name</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr repeat.for="invoice of invoices">
-                            <td>
-                                <span click.delegate="onSelectInvoice($event, invoice)"><u style="cursor:pointer">${ invoice.invoiceNumber }</u></span>
-                              </td>
-                            <td>${ invoice.account.accountCode }</td>
-                            <td>${ invoice.account.accountName }</td>
-                            <td>${ invoice.invoiceEntryDate | dateFormat:'YYYY-MM-DD' }</td>
-                            <td>${ invoice.invoiceStatus }</td>
-                            <td>${ invoice.invoiceDeliverByDate | dateFormat:'YYYY-MM-DD' }</td>
-                            <td>${ invoice.invoiceItemCount }</td>
-                            <td>${ invoice.invoiceValueSum }</td>
-                            <td>${ invoice.salesRepName }</td>
-                            <td>${ invoice.accountRepName }</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
+      <!--<div if.bind="invoices">Loading invoices...</div>-->
+      <div if.bind="invoices.length != 0">
+        <div class="panel panel-secondary">
+          <div class="panel-body">
+            <div class="row">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td>Invoice Number</td>
+                    <td>Account Code</td>
+                    <td>Account Name</td>
+                    <td>Invoice Entry Date
+                      <td>Invoice Status</td>
+                      <td>Invoice Due Date</td>
+                      <td>Invoice Item Count</td>
+                      <td>Invoice Value</td>
+                      <td>Sale Rep Name</td>
+                      <td>Account Rep Name</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr repeat.for="invoice of invoices">
+                    <td>
+                      <span click.delegate="onSelectInvoice($event, invoice)"><u style="cursor:pointer">${ invoice.invoiceNumber }</u></span>
+                    </td>
+                    <td>${ invoice.account.accountCode }</td>
+                    <td>${ invoice.account.accountName }</td>
+                    <td>${ invoice.invoiceEntryDate | dateFormat:'YYYY-MM-DD' }</td>
+                    <td>${ invoice.invoiceStatus }</td>
+                    <td>${ invoice.invoiceDeliverByDate | dateFormat:'YYYY-MM-DD' }</td>
+                    <td>${ invoice.invoiceItemCount }</td>
+                    <td>${ invoice.invoiceValueSum }</td>
+                    <td>${ invoice.salesRepName }</td>
+                    <td>${ invoice.accountRepName }</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </template>

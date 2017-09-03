@@ -1,61 +1,59 @@
 <template>
-    <require from="./../resources/value-converters/date-format"></require>
-    <require from="./../resources/value-converters/currency-format"></require>
-    <div class='panel panel-primary'>
-    <div class='panel-heading'>
-        ${message}
-    </div>
-    
+  <require from="./../resources/value-converters/date-format"></require>
+  <require from="./../resources/value-converters/currency-format"></require>
+  <div>
+    <h3>${message}</h3>
+  </div>
+  <div class='panel-body'>
+
     <div>
-        <form submit.delegate="find()">
-            <input type="text" value.bind="pattern">
-  		    <button type="submit" class="btn btn-primary">Find</button>
-        </form>
+      <form submit.delegate="find()">
+        <input type="text" value.bind="pattern" placeholder="Search">
+        <!-- <button type="submit" class="btn btn-primary">Find</button> -->
+      </form>
     </div>
-    
-    <div class='panel-body'>
-        <!--<div if.bind="orders">Loading orders...</div>-->
-        <div if.bind="orders">
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    <div class="row">
-                        <table class="table">
-                        <thead>
-                        <tr>
-                            <td>Order Number</td>
-                            <td>Account Code</td>
-                            <td>Account Name</td>
-                            <td>Order Entry Date
-                            <td>Order Status</td>
-                            <td>Order Due Date</td>
-                            <td>Order Item Count</td>
-                            <td>Order Value</td>
-                            <td>Sale Rep Name</td>
-                            <td>Account Rep Name</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr repeat.for="order of orders">
-                            <!--<td><a [routerLink]="['AccountOrderDetail', {oid: order.orderKey, id: order.account.accountKey}]" href="">{{order.orderNumber}}</a></td>-->
-                            <td>
-                                <span click.delegate="onSelectOrder($event, order)"><u style="cursor:pointer">${ order.orderNumber }</u></span>
-                              </td>
-                            <td>${ order.account.accountCode }</td>
-                            <td>${ order.account.accountName }</td>
-                            <td>${ order.orderEntryDate | dateFormat:'YYYY-MM-DD' }</td>
-                            <td>${ order.orderStatus }</td>
-                            <td>${ order.orderDeliverByDate | dateFormat:'YYYY-MM-DD' }</td>
-                            <td>${ order.orderItemCount }</td>
-                            <td>${ order.orderValueSum | numberFormat:'$0,0.00' }</td>
-                            <td>${ order.salesRepName }</td>
-                            <td>${ order.accountRepName }</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-            </div>
+
+    <!--<div if.bind="orders">Loading orders...</div>-->
+    <div if.bind="orders.length != 0">
+      <div class="panel panel-secondary">
+        <div class="panel-body">
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>Order Number</td>
+                  <td>Account Code</td>
+                  <td>Account Name</td>
+                  <td>Order Entry Date
+                    <td>Order Status</td>
+                    <td>Order Due Date</td>
+                    <td>Order Item Count</td>
+                    <td>Order Value</td>
+                    <td>Sale Rep Name</td>
+                    <td>Account Rep Name</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr repeat.for="order of orders">
+                  <!--<td><a [routerLink]="['AccountOrderDetail', {oid: order.orderKey, id: order.account.accountKey}]" href="">{{order.orderNumber}}</a></td>-->
+                  <td>
+                    <span click.delegate="onSelectOrder($event, order)"><u style="cursor:pointer">${ order.orderNumber }</u></span>
+                  </td>
+                  <td>${ order.account.accountCode }</td>
+                  <td>${ order.account.accountName }</td>
+                  <td>${ order.orderEntryDate | dateFormat:'YYYY-MM-DD' }</td>
+                  <td>${ order.orderStatus }</td>
+                  <td>${ order.orderDeliverByDate | dateFormat:'YYYY-MM-DD' }</td>
+                  <td>${ order.orderItemCount }</td>
+                  <td>${ order.orderValueSum | numberFormat:'$0,0.00' }</td>
+                  <td>${ order.salesRepName }</td>
+                  <td>${ order.accountRepName }</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </template>
