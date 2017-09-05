@@ -43,4 +43,9 @@ export class EditProduct {
   cancel() {
     this.route.navigateToRoute('products');
   }
+
+  delete() {
+    this.productService.deleteProduct(this.editProduct.productKey)
+      .then(account => this.route.navigateToRoute('products'));
+  }
 }

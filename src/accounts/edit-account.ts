@@ -45,4 +45,10 @@ export class EditAccount {
   cancel() {
     this.route.navigateToRoute('products');
   }
+
+  delete() {
+    this.accountService.deleteAccount(this.editAccount.accountKey)
+      .then(account => this.route.navigateToRoute('accounts'));
+  }
+
 }
