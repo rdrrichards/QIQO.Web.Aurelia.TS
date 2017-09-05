@@ -1,3 +1,30 @@
 <template>
   <h3>${message}</h3>
+
+  <form submit.delegate="save()">
+    <div class="form-group">
+      <label for="productName">Product Name:</label>
+      <input type="text" class="form-control" id="productName" value.bind="editProduct.productName">
+    </div>
+    <div class="form-group">
+      <label for="productDesc">Product Description:</label>
+      <input type="text" class="form-control" id="productDesc" value.bind="editProduct.productDesc">
+    </div>
+    <div class="form-group">
+      <label for="productShortDesc">Product Short Name:</label>
+      <input type="text" class="form-control" id="productShortDesc" value.bind="editProduct.productShortDesc">
+    </div>
+    <div class="form-group">
+      <label for="productLongDesc">Product Long Name:</label>
+      <input type="text" class="form-control" id="productLongDesc" value.bind="editProduct.productLongDesc">
+    </div>
+    <div class="form-group">
+      <label for="productImagePath">Product Image Path:</label>
+      <input type="text" class="form-control" id="productImagePath" value.bind="editProduct.productImagePath">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="reset" class="btn btn-secondary" click.delegate="reset()">Reset</button>
+    <button type="button" class="btn btn-secondary" click.delegate="cancel()">Cancel</button>
+  </form>
+
 </template>

@@ -7,6 +7,7 @@ import { ProductService } from './../services/product.service';
 export class EditProduct {
   message: string;
   product: IProduct;
+  editProduct: IProduct;
 
   constructor(private productService: ProductService, private route: Router) {
     this.message = 'Edit Product';
@@ -16,6 +17,7 @@ export class EditProduct {
     this.productService.getProduct(params.id)
       .then(product => {
         this.product = product;
+        this.editProduct = Object.assign({}, this.product);
         this.message = this.message + ': ' + this.product.productCode + ' - ' + this.product.productName;
       }).catch(
       err => {
@@ -24,7 +26,7 @@ export class EditProduct {
   }
 
   save() {
-    this.productService.updateProduct(this.product)
+    this.productService.updateProduct(this.editProduct)
       .then(response => {
         console.log(response);
         this.route.navigateToRoute('products');
@@ -32,5 +34,13 @@ export class EditProduct {
       err => {
         console.log(err.message);
       });
+  }
+
+  reset() {
+    this.editProduct = Object.assign({}, this.product);
+  }
+
+  cancel() {
+    this.route.navigateToRoute('products');
   }
 }
