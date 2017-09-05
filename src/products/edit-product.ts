@@ -9,7 +9,7 @@ export class EditProduct {
   product: IProduct;
   editProduct: IProduct;
 
-  constructor(private productService: ProductService, private route: Router) {
+  constructor(private productService: ProductService, private router: Router) {
     this.message = 'Edit Product';
   }
 
@@ -29,7 +29,7 @@ export class EditProduct {
     this.productService.updateProduct(this.editProduct)
       .then(response => {
         console.log(response);
-        this.route.navigateToRoute('products');
+        this.router.navigateToRoute('products');
       }).catch(
       err => {
         console.log(err.message);
@@ -41,11 +41,11 @@ export class EditProduct {
   }
 
   cancel() {
-    this.route.navigateToRoute('products');
+    this.router.navigateToRoute('product-detail', { id: this.product.productKey });
   }
 
   delete() {
     this.productService.deleteProduct(this.editProduct.productKey)
-      .then(account => this.route.navigateToRoute('products'));
+      .then(account => this.router.navigateToRoute('products'));
   }
 }

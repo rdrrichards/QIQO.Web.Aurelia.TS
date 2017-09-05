@@ -9,7 +9,7 @@ export class EditAccount {
   account: IAccount;
   editAccount: IAccount;
 
-  constructor(private accountService: AccountService, private route: Router) {
+  constructor(private accountService: AccountService, private router: Router) {
     this.message = 'Edit Account';
   }
 
@@ -31,7 +31,7 @@ export class EditAccount {
     this.accountService.updateAccount(this.editAccount)
       .then(response => {
         console.log(response);
-        this.route.navigateToRoute('accounts');
+        this.router.navigateToRoute('accounts');
       }).catch(
       err => {
         console.log(err.message);
@@ -43,12 +43,12 @@ export class EditAccount {
   }
 
   cancel() {
-    this.route.navigateToRoute('products');
+    this.router.navigateToRoute('account-detail', {id: this.account.accountKey});
   }
 
   delete() {
     this.accountService.deleteAccount(this.editAccount.accountKey)
-      .then(account => this.route.navigateToRoute('accounts'));
+      .then(account => this.router.navigateToRoute('accounts'));
   }
 
 }

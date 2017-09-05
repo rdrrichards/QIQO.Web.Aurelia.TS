@@ -1,3 +1,4 @@
+import { Router } from 'aurelia-router';
 import { ProductService } from './../services/product.service';
 import { IProduct } from './../models/product';
 import { autoinject } from 'aurelia-dependency-injection';
@@ -7,7 +8,7 @@ export class ViewProduct {
   message = 'View Product';
   product: IProduct;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   activate(params, routeConfig) {
     // console.log('Active running...');
@@ -21,5 +22,9 @@ export class ViewProduct {
         console.log(err.message);
       }
       );
+  }
+
+  edit(event: UIEvent, product: IProduct) {
+    this.router.navigateToRoute('product-edit', {id: product.productKey});
   }
 }

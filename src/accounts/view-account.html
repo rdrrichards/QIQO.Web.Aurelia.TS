@@ -19,6 +19,7 @@
                   <td>Address Count</td>
                   <td>Attribute Count</td>
                   <td>Employee Count</td>
+                  <td></td>
                 </tr>
               </thead>
               <tbody>
@@ -32,6 +33,7 @@
                   <td>${ account.addresses.length }</td>
                   <td>${ account.attributes.length }</td>
                   <td>${ account.employees.length }</td>
+                  <td><button type="button" class="btn btn-info" click.delegate="edit($event, account)">Edit</button></td>
                 </tr>
               </tbody>
             </table>

@@ -32,7 +32,7 @@ export class FindProduct {
   }
 
   onSelectProduct(event: UIEvent, product: IProduct) {
-    this.router.navigateToRoute('product-detail', { id: product.productKey })
+    this.router.navigateToRoute('product-detail', { id: product.productKey });
   }
 
   next(page: number, pageSize: number, orderBy: string, category: string) {

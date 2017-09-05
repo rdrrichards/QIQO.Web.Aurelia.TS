@@ -27,7 +27,7 @@
                         <td>${ product.productShortDesc }</td>
                         <td>${ product.productLongDesc }</td>
                         <td>${ product.productImagePath }</td>
-                        <td><a href="#/products/edit/${product.productKey}">Edit</a></td>
+                        <td><button type="button" class="btn btn-info" click.delegate="edit($event, product)">Edit</button></td>
                     </tr>
                     </tbody>
                 </table>
