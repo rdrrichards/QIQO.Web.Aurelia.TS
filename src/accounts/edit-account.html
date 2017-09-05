@@ -1,3 +1,33 @@
 <template>
   <h3>${message}</h3>
+  <form submit.delegate="save()">
+    <div class="form-group">
+      <label for="accountCode">Account Code:</label>
+      <input type="text" class="form-control" id="accountCode" value.bind="editAccount.accountCode">
+    </div>
+    <div class="form-group">
+      <label for="accountName">Account Name:</label>
+      <input type="text" class="form-control" id="accountName" value.bind="editAccount.accountName">
+    </div>
+    <div class="form-group">
+      <label for="accountDesc">Account Description:</label>
+      <input type="text" class="form-control" id="accountDesc" value.bind="editAccount.accountDesc">
+    </div>
+    <div class="form-group">
+      <label for="accountDBA">Account D/B/A:</label>
+      <input type="text" class="form-control" id="accountDBA" value.bind="editAccount.accountDBA">
+    </div>
+    <div class="form-group">
+      <label for="accountStartDate">Account Start Date:</label>
+      <input type="text" class="form-control" id="accountStartDate" value.bind="editAccount.accountStartDate">
+    </div>
+    <div class="form-group">
+      <label for="accountEndDate">Account End Date:</label>
+      <input type="text" class="form-control" id="accountEndDate" value.bind="editAccount.accountEndDate">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="reset" class="btn btn-secondary" click.delegate="reset()">Reset</button>
+    <button type="button" class="btn btn-warning" click.delegate="cancel()">Cancel</button>
+  </form>
+
 </template>

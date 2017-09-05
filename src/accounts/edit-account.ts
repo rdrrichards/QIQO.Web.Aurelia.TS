@@ -7,6 +7,7 @@ import { AccountService } from './../services/account.service';
 export class EditAccount {
   message: string;
   account: IAccount;
+  editAccount: IAccount;
 
   constructor(private accountService: AccountService, private route: Router) {
     this.message = 'Edit Account';
@@ -17,6 +18,7 @@ export class EditAccount {
       .then(account => {
         // console.log(account);
         this.account = account;
+        this.editAccount = Object.assign({}, this.account);
         this.message = this.message + ': ' + this.account.accountName;
       }).catch(
       err => {
@@ -26,13 +28,21 @@ export class EditAccount {
   }
 
   save() {
-    this.accountService.updateAccount(this.account)
+    this.accountService.updateAccount(this.editAccount)
       .then(response => {
         console.log(response);
-        this.route.navigateToRoute('products');
+        this.route.navigateToRoute('accounts');
       }).catch(
       err => {
         console.log(err.message);
       });
+  }
+
+  reset() {
+    this.editAccount = Object.assign({}, this.account);
+  }
+
+  cancel() {
+    this.route.navigateToRoute('products');
   }
 }
