@@ -32,7 +32,7 @@
     "aurelia-tools": "^1.0.0",
     "aurelia-webpack-plugin": "^2.0.0-rc.5",
     "awesome-typescript-loader": "^3.2.3",
-    "copy-webpack-plugin": "4.0.1",
+    "copy-webpack-plugin": "4.1.0",
     "css-loader": "0.28.7",
     "del": "^3.0.0",
     "expose-loader": "0.7.3",
